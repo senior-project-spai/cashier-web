@@ -26,7 +26,7 @@ function User() {
           <TextField id="standard-basic" label="UserID" size="small" onChange={(event) => { setTmpUserID(event.target.value) }} autoFocus value={tmpUserID}/>
           {'\u00A0'}
           <Button variant="contained" color="primary" style={{ height: "100%" }} type="submit">
-            Send
+            Enter
             </Button>
           {'\u00A0'}
           {userID}
