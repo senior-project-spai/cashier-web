@@ -1,6 +1,5 @@
 FROM tiangolo/node-frontend:10 AS builder
 
-WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
