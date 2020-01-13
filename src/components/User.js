@@ -7,6 +7,9 @@ import {
 } from '@material-ui/core/styles';
 import { useState } from 'react';
 import logo from '../logo.svg';
+import axios from 'axios'
+
+
 const useStyles = makeStyles({
   center: {
     marginTop: "auto",
@@ -18,18 +21,22 @@ function User() {
   const classes = useStyles();
 
   const [userID, setUserID] = useState("");
-  const [tmpUserID, setTmpUserID] = useState("");
+  const formSubmitHandler = async (e) => {
+    e.preventDefault();
+    const response = await axios.post('http://127.0.0.1:8000/detection', { customerId: userID })
+    console.log(response)
+    //TODO: get user image from response
+  }
   return (
     <Grid container style={{ height: 150 }}>
       <Grid item xs={4} className={classes.center}>
-        <form onSubmit={(e) => { setUserID(tmpUserID); e.preventDefault(); setTmpUserID("") }}>
-          <TextField id="standard-basic" label="UserID" size="small" onChange={(event) => { setTmpUserID(event.target.value) }} autoFocus value={tmpUserID}/>
+        <form onSubmit={formSubmitHandler}>
+          <TextField id="standard-basic" label="UserID" size="small" onChange={(event) => { setUserID(event.target.value) }} autoFocus value={userID} />
           {'\u00A0'}
           <Button variant="contained" color="primary" style={{ height: "100%" }} type="submit">
             Enter
             </Button>
           {'\u00A0'}
-          {userID}
         </form>
       </Grid>
       <Grid item xs={4}>
