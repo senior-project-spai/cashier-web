@@ -1,11 +1,16 @@
-FROM tiangolo/node-frontend:10 AS builder
-
-COPY package*.json ./
-RUN npm ci
-COPY . .
+### STAGE 1: Build ###
+FROM node:10.13.0 as builder
+RUN mkdir /usr/src/app
+WORKDIR /usr/src/app
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+COPY package.json /usr/src/app/package.json
+RUN npm install --silent
+RUN npm install react-scripts -g --silent
+COPY . /usr/src/app
 RUN npm run build
 
-FROM nginx:1.15
-
-COPY --from=builder /app/build/ /usr/share/nginx/html
-COPY --from=builder /nginx.conf /etc/nginx/conf.d/default.conf
+### STAGE 2: Production Environment ###
+FROM nginx:1.13.12-alpine
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
