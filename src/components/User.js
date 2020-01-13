@@ -17,15 +17,15 @@ const useStyles = makeStyles({
 function User() {
   const classes = useStyles();
 
-  const [userID, setUserID] = useState(-1);
-  const [tmpUserID, setTmpUserID] = useState(-1);
+  const [userID, setUserID] = useState("");
+  const [tmpUserID, setTmpUserID] = useState("");
   return (
     <Grid container style={{ height: 150 }}>
       <Grid item xs={4} className={classes.center}>
-        <form onSubmit={(e) => { setUserID(tmpUserID); e.preventDefault() }}>
-          <TextField id="standard-basic" label="UserID" size="small" onChange={(event) => { setTmpUserID(event.target.value) }} autoFocus />
+        <form onSubmit={(e) => { setUserID(tmpUserID); e.preventDefault(); setTmpUserID("") }}>
+          <TextField id="standard-basic" label="UserID" size="small" onChange={(event) => { setTmpUserID(event.target.value) }} autoFocus value={tmpUserID}/>
           {'\u00A0'}
-          <Button variant="contained" color="primary" style={{ height: "100%" }} onClick={() => { setUserID(tmpUserID) }}>
+          <Button variant="contained" color="primary" style={{ height: "100%" }} type="submit">
             Send
             </Button>
           {'\u00A0'}
