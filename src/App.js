@@ -13,7 +13,7 @@ function App() {
 
   const addItemToList = async (itemCode) => {
     if (itemCode.length > 0) {
-      const product_detail = await axios.get('http://mock-api-spai.apps.spai.ml/_api/product/' + itemCode)
+      const product_detail = await axios.get('https://mock-api-spai.apps.spai.ml/_api/product/' + itemCode)
 
       const existing_item_index = itemList.findIndex((item) => {
         return item.barcode === itemCode
