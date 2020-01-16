@@ -17,33 +17,70 @@ const useStyles = makeStyles({
     textAlign: "center"
   },
 });
-function User() {
+function User(props) {
   const classes = useStyles();
 
-  const [userID, setUserID] = useState("");
   const formSubmitHandler = async (e) => {
     e.preventDefault();
-    const response = await axios.post('http://127.0.0.1:8000/detection', { customerId: userID })
+    const response = await axios.post('http://127.0.0.1:8000/detection', { customerId: props.userID })
     console.log(response)
     //TODO: get user image from response
   }
+  console.log(props)
   return (
-    <Grid container style={{ height: 150 }}>
-      <Grid item xs={4} className={classes.center}>
-        <form onSubmit={formSubmitHandler}>
-          <TextField id="standard-basic" label="UserID" size="small" onChange={(event) => { setUserID(event.target.value) }} autoFocus value={userID} />
+    <Grid
+      container
+      style={{
+        height: 150
+      }}
+    >
+      <Grid
+        item
+        xs={4}
+        className={classes.center}
+      >
+        <form
+          onSubmit={formSubmitHandler}
+        >
+          <TextField
+            id="standard-basic"
+            label="userID"
+            size="small"
+            onChange={(event) => { props.setUserID(event.target.value) }}
+            autoFocus
+            value={props.userID}
+          />
           {'\u00A0'}
-          <Button variant="contained" color="primary" style={{ height: "100%" }} type="submit">
+          <Button
+            variant="contained"
+            color="primary"
+            style={{
+              height: "100%"
+            }}
+            type="submit"
+          >
             Enter
             </Button>
           {'\u00A0'}
         </form>
       </Grid>
       <Grid item xs={4}>
-        <img style={{ height: 150, width: "auto" }} src={logo} alt="User" />
+        <img
+          style={{
+            height: 150,
+            width: "auto"
+          }}
+          src={logo}
+          alt="User"
+        />
       </Grid>
       <Grid item xs={4} className={classes.center}>
-        <h1 style={{ fontSize: 55 }}>12345678.00</h1>
+        <h1
+          style={{
+            fontSize: 55
+          }}
+        >12345678.00
+        </h1>
       </Grid>
     </Grid>
   );

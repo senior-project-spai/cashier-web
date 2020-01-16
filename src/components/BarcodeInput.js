@@ -15,10 +15,15 @@ const useStyles = makeStyles({
   },
 });
 
-function BarcodeInput() {
+function BarcodeInput(props) {
   const classes = useStyles();
-  const [itemCode, setItemCode] = useState("");
   const [tmpItemCode, setTmpItemCode] = useState("");
+
+  const barcodeSubmitHandler = (e) => {
+    props.addItemToList(tmpItemCode)
+    e.preventDefault();
+    setTmpItemCode("")
+  }
 
   return (
     <>
@@ -26,18 +31,50 @@ function BarcodeInput() {
         <Grid item xs={2} >
         </Grid>
         <Grid item xs={8} >
-          <form onSubmit={(e) => { setItemCode(tmpItemCode); e.preventDefault(); setTmpItemCode("") }} style={{ height: 50 }} >
-            <TextField id="standard-basic" style={{ width: "60%" }} label="Barcode" size="small" onChange={(event) => { setTmpItemCode(event.target.value) }} value={tmpItemCode} />
+          <form
+            onSubmit={barcodeSubmitHandler}
+            style={{
+              height: 50
+            }}
+          >
+            <TextField
+              id="standard-basic"
+              style={{
+                width: "60%"
+              }}
+              label="Barcode"
+              size="small"
+              onChange={(event) => { setTmpItemCode(event.target.value) }}
+              value={tmpItemCode}
+            />
             {'\u00A0'}
-            <Button variant="contained" color="primary" type="submit" style={{ width: "18%", verticalAlign: "bottom" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              style={{
+                width: "18%",
+                verticalAlign: "bottom"
+              }}
+              onClick={barcodeSubmitHandler}
+            >
               Add Product
           </Button>
             {'\u00A0'}
-            {itemCode}
           </form>
         </Grid>
-        <Grid item xs={2} className={classes.center} style={{ verticalAlign: "bottom" }}>
-          <Button variant="contained" color="primary" type="submit" style={{ width: "100%" }}>
+        <Grid
+          item
+          xs={2}
+          className={classes.center}
+          style={{ verticalAlign: "bottom" }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{ width: "100%" }}
+          >
             Finish
         </Button>
         </Grid>

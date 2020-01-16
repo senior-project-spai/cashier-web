@@ -33,7 +33,7 @@ const columns = [
     align: "left"
   },
   {
-    id: 'name',
+    id: 'product_name',
     label: 'ProductName',
     align: "left",
     minWidth: 200
@@ -54,46 +54,7 @@ const columns = [
   }
 ];
 
-function createData(barcode, name, price, quantity) {
-  return { barcode, name, price, quantity };
-}
 
-const rows = [
-  // 15 items
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-  createData(1234567890123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6.50, 1),
-];
 
 const useStyles = makeStyles({
   root: {
@@ -101,13 +62,23 @@ const useStyles = makeStyles({
   },
 });
 
-function ItemTable() {
+function ItemTable(props) {
   const classes = useStyles();
   const size = useWindowSize();
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container} style={{ maxHeight: size.height - 200 }}>
-        <Table stickyHeader aria-label="sticky table">
+    <Paper
+      className={classes.root}
+    >
+      <TableContainer
+        className={classes.container}
+        style={{
+          maxHeight: size.height - 200
+        }}
+      >
+        <Table
+          stickyHeader
+          aria-label="sticky table"
+        >
           <TableHead>
             <TableRow>
               {columns.map(column => (
@@ -125,13 +96,21 @@ function ItemTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => {
+            {props.itemList.map(row => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={row.code}
+                >
                   {columns.map(column => {
                     const value = row[column.id];
                     return (
-                      <TableCell key={column.id} align={column.align}>
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                      >
                         {column.format && typeof value === 'number' ? column.format(value) : value}
                       </TableCell>
                     );
