@@ -1,14 +1,14 @@
 import React from 'react';
+import axios from 'axios'
 import {
-  TextField, Button, Grid
+  TextField,
+  Button,
+  Grid
 } from '@material-ui/core'
 import {
   makeStyles,
 } from '@material-ui/core/styles';
-import { useState } from 'react';
 import logo from '../logo.svg';
-import axios from 'axios'
-
 
 const useStyles = makeStyles({
   center: {
@@ -20,13 +20,19 @@ const useStyles = makeStyles({
 function User(props) {
   const classes = useStyles();
 
-  const formSubmitHandler = async (e) => {
-    e.preventDefault();
-    const response = await axios.post('http://127.0.0.1:8000/detection', { customerId: props.userID })
-    console.log(response)
-    //TODO: get user image from response
+  const isValidUserID = (userID) => {
+    return userID
   }
-  console.log(props)
+
+  const userSubmitHandler = async (e) => {
+    e.preventDefault();
+    const userInput = props.userID
+    if (isValidUserID(userInput)) {
+      const response = await axios.get(props.apiLink + userInput)
+      props.setUser(response.data)
+    }
+  }
+
   return (
     <Grid
       container
@@ -40,13 +46,13 @@ function User(props) {
         className={classes.center}
       >
         <form
-          onSubmit={formSubmitHandler}
+          onSubmit={userSubmitHandler}
         >
           <TextField
             id="standard-basic"
-            label="userID"
+            label={props.user.name || "userID"}
             size="small"
-            onChange={(event) => { props.setUserID(event.target.value) }}
+            onChange={e => { props.setUserID(e.target.value) }}
             autoFocus
             value={props.userID}
           />
@@ -70,9 +76,10 @@ function User(props) {
             height: 150,
             width: "auto"
           }}
-          src={logo}
+          src={props.user.photo_uri || logo}
           alt="User"
         />
+
       </Grid>
       <Grid item xs={4} className={classes.center}>
         <h1

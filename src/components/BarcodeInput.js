@@ -1,6 +1,9 @@
 import React from 'react';
+import axios from 'axios'
 import {
-  TextField, Button, Grid
+  TextField,
+  Button,
+  Grid
 } from '@material-ui/core'
 import { useState } from 'react';
 import {
@@ -20,9 +23,48 @@ function BarcodeInput(props) {
   const [tmpItemCode, setTmpItemCode] = useState("");
 
   const barcodeSubmitHandler = (e) => {
-    props.addItemToList(tmpItemCode)
+    addItemToList(tmpItemCode)
     e.preventDefault();
     setTmpItemCode("")
+  }
+
+  const addItemToList = async (itemCode) => {
+    if (itemCode.length > 0) {
+      const product_detail = await axios.get(props.apiLink + itemCode)
+      const itemList = props.itemList
+
+      const existing_item_index = itemList.findIndex((item) => {
+        return item.barcode === itemCode
+      })
+
+      if (existing_item_index !== -1) {
+        itemList[existing_item_index] = {
+          ...itemList[existing_item_index],
+          quantity: itemList[existing_item_index].quantity + 1
+        }
+        props.setItemList([...itemList])
+
+        product_detail.data.price = itemList[existing_item_index].price
+      }
+      else {
+        props.setItemList(itemList => [...itemList, {
+          ...product_detail.data,
+          barcode: itemCode,
+          quantity: 1
+        }])
+      }
+      props.setSumPrice(props.sumPrice + product_detail.data.price)
+    }
+  }
+
+  const finishButtonHandler = () => {
+    // TODO: Send all data to user
+
+    // reset everything
+    props.setUser({})
+    props.setSumPrice(0)
+    props.setUserID("")
+    props.setItemList([])
   }
 
   return (
@@ -74,6 +116,7 @@ function BarcodeInput(props) {
             color="primary"
             type="submit"
             style={{ width: "100%" }}
+            onClick={finishButtonHandler}
           >
             Finish
         </Button>

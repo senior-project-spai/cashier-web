@@ -54,8 +54,6 @@ const columns = [
   }
 ];
 
-
-
 const useStyles = makeStyles({
   root: {
     width: '100%',
