@@ -79,7 +79,8 @@ function User(props) {
           style={{
             fontSize: 55
           }}
-        >12345678.00
+        >
+          {props.sumPrice.toFixed(2)}
         </h1>
       </Grid>
     </Grid>
