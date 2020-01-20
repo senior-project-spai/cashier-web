@@ -28,7 +28,8 @@ function User(props) {
     e.preventDefault();
     const userInput = props.userID
     if (isValidUserID(userInput)) {
-      const response = await axios.get(props.apiLink + userInput)
+      // Enter RaspPi detection Link
+      const response = await axios.get('http://127.0.0.1:8000/detection')
       props.setUser(response.data)
     }
   }
