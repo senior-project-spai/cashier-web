@@ -2,12 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, CssBaseline, Typography, Box } from "@material-ui/core";
+import { useAlert } from 'react-alert';
 import ItemTable from "./components/ItemTable";
 import BarcodeInput from "./components/BarcodeInput";
 import UserImage from "./components/UserImage";
 import UserInput from "./components/UserInput";
 import logo from "./logo.svg";
-import axios from 'axios'
+import axios from 'axios';
 
 const useStyles = makeStyles({
   headerContainer: {
@@ -41,22 +42,26 @@ const useStyles = makeStyles({
   }
 });
 
-function App() {
+function Home() {
   const [itemList, setItemList] = useState([]);
   const [sumPrice, setSumPrice] = useState(0);
   const [user, setUser] = useState({});
   const [userID, setUserID] = useState("");
   const [branchID, setBranchID] = useState(0);
   const [transactionID, setTransactionID] = useState(-1)
-
-  const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/";
-
-  const finishButtonHandler = () => {
-    // TODO: Send all data to db
-    axios.post(apiLink + "transaction/" + "product/", {
-      transaction_id: transactionID,
-      product_list: itemList
-    })
+  const apiLink = "https://127.0.0.1:8000/_api/";
+  const alert = useAlert()
+  const finishButtonHandler = async () => {
+    try {
+      await axios.post(apiLink + "transaction/product/", {
+        transaction_id: transactionID,
+        product_list: itemList
+      })
+    }
+    catch (error) {
+      console.error(error)
+      alert.show(error.message + " please try again");
+    }
     // reset everything
     setUser({})
     setSumPrice(0)
@@ -113,4 +118,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
