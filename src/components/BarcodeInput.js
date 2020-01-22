@@ -58,8 +58,11 @@ function BarcodeInput(props) {
   }
 
   const finishButtonHandler = () => {
-    // TODO: Send all data to user
-
+    // TODO: Send all data to db
+    axios.post(props.apiLink, {
+      transaction_id:props.transactionID,
+      product_list:props.itemList
+    })
     // reset everything
     props.setUser({})
     props.setSumPrice(0)

@@ -10,8 +10,9 @@ function App() {
   const [sumPrice, setSumPrice] = useState(0);
   const [user, setUser] = useState({})
   const [userID, setUserID] = useState("");
+  const [transactionID,setTransactionID] = useState(-1)
 
-  const apiLink = "https://mock-api-spai.apps.spai.ml/_api/"
+  const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/"
 
   return (
     <div className="App">
@@ -22,6 +23,8 @@ function App() {
         user={user}
         setUserID={setUserID}
         userID={userID}
+        transactionID={transactionID}
+        setTransactionID={setTransactionID}
       />
       <BarcodeInput
         itemList={itemList}
@@ -30,6 +33,7 @@ function App() {
         sumPrice={sumPrice}
         apiLink={apiLink + "product/"}
         setUser={setUser}
+        transactionID={transactionID}
         setUserID={setUserID}
       />
       <ItemTable
