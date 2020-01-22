@@ -47,13 +47,13 @@ function App() {
   const [user, setUser] = useState({});
   const [userID, setUserID] = useState("");
   const [branchID, setBranchID] = useState(0);
-  const [transactionID,setTransactionID] = useState(-1)
+  const [transactionID, setTransactionID] = useState(-1)
 
   const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/";
 
   const finishButtonHandler = () => {
     // TODO: Send all data to db
-    axios.post(apiLink + "product/", {
+    axios.post(apiLink + "transaction/" + "product/", {
       transaction_id: transactionID,
       product_list: itemList
     })
