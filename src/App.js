@@ -52,16 +52,45 @@ function Home() {
   const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/";
   const alert = useAlert()
   const finishButtonHandler = async () => {
+    let transaction_response = null;
     try {
-      await axios.post(apiLink + "transaction/product/", {
-        transaction_id: transactionID,
-        product_list: itemList
-      })
+      transaction_response = await axios.post(apiLink + "transaction/", {
+        time: Math.round(Date.now() / 1000),
+        branch_id: Number(branchID),
+        customer_id: Number(userID) || null
+      });
     }
     catch (error) {
-      console.error(error)
-      alert.show(error.message + " please try again");
+      console.error(error);
+      alert.show(error.message + " transaction");
     }
+
+    if (transaction_response) {
+      setTransactionID(transaction_response.data.transaction_id);
+
+      try {
+        axios.post(apiLink + "transaction/faceimage/", {
+          transaction_id: Number(transaction_response.data.transaction_id),
+          face_image_id: Number(user.face_image_id)
+        });
+      }
+      catch (error) {
+        console.error(error);
+        alert.show(error.message + " please try again");
+      }
+
+      try {
+        await axios.post(apiLink + "transaction/product/", {
+          transaction_id: Number(transaction_response.data.transaction_id),
+          product_list: itemList
+        })
+      }
+      catch (error) {
+        console.error(error)
+        alert.show(error.message + " please try again");
+      }
+    }
+
     // reset everything
     setUser({})
     setSumPrice(0)
