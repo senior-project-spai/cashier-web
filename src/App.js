@@ -7,6 +7,7 @@ import BarcodeInput from "./components/BarcodeInput";
 import UserImage from "./components/UserImage";
 import UserInput from "./components/UserInput";
 import logo from "./logo.svg";
+import axios from 'axios'
 
 const useStyles = makeStyles({
   headerContainer: {
@@ -45,18 +46,23 @@ function App() {
   const [sumPrice, setSumPrice] = useState(0);
   const [user, setUser] = useState({});
   const [userID, setUserID] = useState("");
+  const [branchID, setBranchID] = useState(0);
+  const [transactionID,setTransactionID] = useState(-1)
 
   const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/";
 
   const finishButtonHandler = () => {
-    // TODO: Send all data to user
-
+    // TODO: Send all data to db
+    axios.post(apiLink + "product/", {
+      transaction_id: transactionID,
+      product_list: itemList
+    })
     // reset everything
-    setUser({});
-    setSumPrice(0);
-    setUserID("");
-    setItemList([]);
-  };
+    setUser({})
+    setSumPrice(0)
+    setUserID("")
+    setItemList([])
+  }
 
   const styles = useStyles();
 

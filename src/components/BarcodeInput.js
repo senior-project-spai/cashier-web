@@ -2,19 +2,10 @@ import React from "react";
 import axios from "axios";
 import { TextField, Button, Box } from "@material-ui/core";
 import { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles({
-  center: {
-    marginTop: "auto",
-    marginBottom: "auto",
-    textAlign: "center"
-  }
-});
 
 function BarcodeInput(props) {
-  const classes = useStyles();
   const [tmpItemCode, setTmpItemCode] = useState("");
+  console.log(props);
 
   const barcodeSubmitHandler = e => {
     addItemToList(tmpItemCode);
@@ -53,13 +44,8 @@ function BarcodeInput(props) {
     }
   };
 
-  
-
   return (
-    <form
-      onSubmit={barcodeSubmitHandler}
-      className={props.className}
-    >
+    <form onSubmit={barcodeSubmitHandler} className={props.className}>
       <Box display="flex">
         <TextField
           id="standard-basic"
@@ -83,14 +69,6 @@ function BarcodeInput(props) {
         >
           Add
         </Button>
-        {/* <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          onClick={finishButtonHandler}
-        >
-          Finish
-        </Button> */}
       </Box>
     </form>
   );

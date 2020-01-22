@@ -59,6 +59,7 @@ const useStyles = makeStyles({
 function ItemTable(props) {
   const classes = useStyles();
   const size = useWindowSize();
+  console.log(props)
   return (
     <TableContainer>
       <Table stickyHeader aria-label="sticky table">
