@@ -8,6 +8,7 @@ import {
   TableBody,
   Table
 } from "@material-ui/core";
+import useWindowSize from '../hooks/use-window-size'
 
 const BlackTableCell = withStyles(theme => ({
   head: {
@@ -29,7 +30,7 @@ const columns = [
   },
   {
     id: "product_name",
-    label: "ProductName",
+    label: "Product Name",
     align: "left",
     minWidth: 200
   },
@@ -51,8 +52,11 @@ const columns = [
 
 
 function ItemTable(props) {
+  const size = useWindowSize();
   return (
-    <TableContainer>
+    <TableContainer style={{
+      maxHeight: size.height - 250
+    }}>
       <Table stickyHeader aria-label="sticky table">
         <TableHead>
           <TableRow>
