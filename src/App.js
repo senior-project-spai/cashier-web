@@ -49,7 +49,7 @@ function Home() {
   const [userID, setUserID] = useState("");
   const [branchID, setBranchID] = useState(0);
   const [transactionID, setTransactionID] = useState(-1)
-  const apiLink = "https://127.0.0.1:8000/_api/";
+  const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/";
   const alert = useAlert()
   const finishButtonHandler = async () => {
     try {
