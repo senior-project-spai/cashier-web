@@ -2,10 +2,11 @@ import React from "react";
 import axios from "axios";
 import { TextField, Button, Box } from "@material-ui/core";
 import { useState } from "react";
+import { useAlert } from 'react-alert';
 
 function BarcodeInput(props) {
   const [tmpItemCode, setTmpItemCode] = useState("");
-
+  const alert = useAlert();
   const barcodeSubmitHandler = e => {
     addItemToList(tmpItemCode);
     e.preventDefault();
@@ -14,7 +15,15 @@ function BarcodeInput(props) {
 
   const addItemToList = async itemCode => {
     if (itemCode.length > 0) {
-      const product_detail = await axios.get(props.apiLink + itemCode);
+      let product_detail = null
+      try {
+        product_detail = await axios.get(props.apiLink + itemCode);
+      }
+      catch (error) {
+        console.error(error);
+        alert.show("product not found");
+        return
+      }
       const itemList = props.itemList;
 
       const existing_item_index = itemList.findIndex(item => {
