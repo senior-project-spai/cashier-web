@@ -29,11 +29,18 @@ function User(props) {
     const userInput = props.userID
     if (isValidUserID(userInput)) {
       // Enter RaspPi detection Link
+      const transaction_reaponse = await axios.post(props.transactionApiLink,{
+        time: Math.round(Date.now() / 1000),
+        branch_id: props.branchID,
+        customer_id: props.userID
+      })
+      props.setTransactionID(transaction_reaponse.data.transaction_id)
+
       const response = await axios.get('http://127.0.0.1:8000/detection')
       props.setUser(response.data)
     }
   }
-
+  console.log(props)
   return (
     <Grid
       container

@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 function BarcodeInput(props) {
   const classes = useStyles();
   const [tmpItemCode, setTmpItemCode] = useState("");
+  console.log(props)
 
   const barcodeSubmitHandler = (e) => {
     addItemToList(tmpItemCode)
@@ -60,8 +61,8 @@ function BarcodeInput(props) {
   const finishButtonHandler = () => {
     // TODO: Send all data to db
     axios.post(props.apiLink, {
-      transaction_id:props.transactionID,
-      product_list:props.itemList
+      transaction_id: props.transactionID,
+      product_list: props.itemList
     })
     // reset everything
     props.setUser({})

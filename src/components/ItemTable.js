@@ -63,6 +63,7 @@ const useStyles = makeStyles({
 function ItemTable(props) {
   const classes = useStyles();
   const size = useWindowSize();
+  console.log(props)
   return (
     <Paper
       className={classes.root}

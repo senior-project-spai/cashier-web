@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import './App.scss';
 import ItemTable from './components/ItemTable'
 import BarcodeInput from './components/BarcodeInput'
 import User from './components/User'
@@ -10,6 +9,7 @@ function App() {
   const [sumPrice, setSumPrice] = useState(0);
   const [user, setUser] = useState({})
   const [userID, setUserID] = useState("");
+  const [branchID, setBranchID] = useState(0);
   const [transactionID,setTransactionID] = useState(-1)
 
   const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/"
@@ -18,13 +18,14 @@ function App() {
     <div className="App">
       <User
         sumPrice={sumPrice}
-        apiLink={apiLink + "user/"}
+        transactionApiLink={apiLink + "transaction/"}
         setUser={setUser}
         user={user}
         setUserID={setUserID}
         userID={userID}
         transactionID={transactionID}
         setTransactionID={setTransactionID}
+        branchID={branchID}
       />
       <BarcodeInput
         itemList={itemList}
