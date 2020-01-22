@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {  withStyles } from "@material-ui/core/styles";
 import {
   TableRow,
   TableHead,
@@ -8,7 +8,6 @@ import {
   TableBody,
   Table
 } from "@material-ui/core";
-import useWindowSize from "../hooks/use-window-size";
 
 const BlackTableCell = withStyles(theme => ({
   head: {
@@ -50,16 +49,8 @@ const columns = [
   }
 ];
 
-const useStyles = makeStyles({
-  root: {
-    width: "100%"
-  }
-});
 
 function ItemTable(props) {
-  const classes = useStyles();
-  const size = useWindowSize();
-  console.log(props)
   return (
     <TableContainer>
       <Table stickyHeader aria-label="sticky table">

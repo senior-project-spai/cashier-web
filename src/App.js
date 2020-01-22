@@ -74,11 +74,14 @@ function App() {
           <UserImage className={styles.userImage} user={user} />
           <UserInput
             className={styles.user}
-            apiLink={apiLink + "user/"}
+            transactionApiLink={apiLink + "transaction/"}
             setUser={setUser}
             user={user}
             setUserID={setUserID}
             userID={userID}
+            branchID={branchID}
+            setTransactionID={setTransactionID}
+            transactionID={transactionID}
           />
           <img src={logo} className={styles.logo} alt="logo" />
           <BarcodeInput

@@ -5,7 +5,6 @@ import { useState } from "react";
 
 function BarcodeInput(props) {
   const [tmpItemCode, setTmpItemCode] = useState("");
-  console.log(props);
 
   const barcodeSubmitHandler = e => {
     addItemToList(tmpItemCode);
