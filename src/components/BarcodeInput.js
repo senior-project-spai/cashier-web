@@ -4,6 +4,8 @@ import { TextField, Button, Box } from "@material-ui/core";
 import { useState } from "react";
 import { useAlert } from 'react-alert';
 
+import SquaredButton from "./SquaredButton";
+
 function BarcodeInput(props) {
   const [tmpItemCode, setTmpItemCode] = useState("");
   const alert = useAlert();
@@ -67,7 +69,7 @@ function BarcodeInput(props) {
           variant="filled"
         />
 
-        <Button
+        <SquaredButton
           variant="contained"
           color="secondary"
           size="small"
@@ -76,7 +78,7 @@ function BarcodeInput(props) {
           onClick={barcodeSubmitHandler}
         >
           Add
-        </Button>
+        </SquaredButton>
       </Box>
     </form>
   );

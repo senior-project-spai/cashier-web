@@ -1,14 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, CssBaseline, Typography, Box } from "@material-ui/core";
-import { useAlert } from 'react-alert';
+import { CssBaseline, Typography, Box } from "@material-ui/core";
+import { useAlert } from "react-alert";
 import ItemTable from "./components/ItemTable";
 import BarcodeInput from "./components/BarcodeInput";
 import UserImage from "./components/UserImage";
 import UserInput from "./components/UserInput";
 import logo from "./logo.svg";
-import axios from 'axios';
+import axios from "axios";
+
+import SquaredButton from "./components/SquaredButton";
 
 const useStyles = makeStyles({
   headerContainer: {
@@ -48,9 +50,9 @@ function Home() {
   const [user, setUser] = useState({});
   const [userID, setUserID] = useState("");
   const [branchID, setBranchID] = useState(0);
-  const [transactionID, setTransactionID] = useState(-1)
+  const [transactionID, setTransactionID] = useState(-1);
   const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/";
-  const alert = useAlert()
+  const alert = useAlert();
   const finishButtonHandler = async () => {
     let transaction_response = null;
     try {
@@ -59,8 +61,7 @@ function Home() {
         branch_id: Number(branchID),
         customer_id: Number(userID) || null
       });
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
       alert.show(error.message + " transaction");
     }
@@ -73,8 +74,7 @@ function Home() {
           transaction_id: Number(transaction_response.data.transaction_id),
           face_image_id: Number(user.face_image_id)
         });
-      }
-      catch (error) {
+      } catch (error) {
         console.error(error);
         alert.show(error.message + " please try again");
       }
@@ -83,20 +83,19 @@ function Home() {
         await axios.post(apiLink + "transaction/product/", {
           transaction_id: Number(transaction_response.data.transaction_id),
           product_list: itemList
-        })
-      }
-      catch (error) {
-        console.error(error)
+        });
+      } catch (error) {
+        console.error(error);
         alert.show(error.message + " please try again");
       }
     }
 
     // reset everything
-    setUser({})
-    setSumPrice(0)
-    setUserID("")
-    setItemList([])
-  }
+    setUser({});
+    setSumPrice(0);
+    setUserID("");
+    setItemList([]);
+  };
 
   const styles = useStyles();
 
@@ -128,7 +127,7 @@ function Home() {
             setUser={setUser}
             setUserID={setUserID}
           />
-          <Button
+          <SquaredButton
             variant="contained"
             color="primary"
             type="submit"
@@ -136,7 +135,7 @@ function Home() {
             className={styles.finish}
           >
             Finish
-          </Button>
+          </SquaredButton>
           <Box className={styles.total} m="auto">
             <Typography variant="h3">{sumPrice.toFixed(2)}</Typography>
           </Box>
