@@ -9,7 +9,11 @@ const useStyles = makeStyles(theme => ({
     height: "100%",
     width: "100%",
     objectFit: "contain",
-    backgroundColor: theme.palette.grey[100]
+    backgroundColor: theme.palette.grey[100],
+    // borderRightWidth: "1px",
+    // borderRightColor: "black",
+    // borderRightStyle: "solid",
+    // boxShadow: '3px 0px 0px 0px grey'
   }
 }));
 
