@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { CssBaseline, Typography, Box } from "@material-ui/core";
+import { CssBaseline, Typography, Box, TextField } from "@material-ui/core";
 import { useAlert } from "react-alert";
 import ItemTable from "./components/ItemTable";
 import BarcodeInput from "./components/BarcodeInput";
@@ -51,6 +51,8 @@ function Home() {
   const [userID, setUserID] = useState("");
   const [branchID, setBranchID] = useState(0);
   const [transactionID, setTransactionID] = useState(-1);
+  const [showPiCameraLinkField, setShowPiCameraLinkField] = useState(false);
+  const [piCameraLink, setPiCameraLink] = useState("http://127.0.0.1:8002/detection");
   const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/";
   const alert = useAlert();
   const finishButtonHandler = async () => {
@@ -97,6 +99,14 @@ function Home() {
     setItemList([]);
   };
 
+  const triggerPiCameraLinkInputField = () => {
+    setShowPiCameraLinkField(!showPiCameraLinkField)
+  }
+
+  const piCameraLinkChangeHandler = (e) => {
+    setPiCameraLink(e.target.value)
+  }
+
   const styles = useStyles();
 
   return (
@@ -115,8 +125,13 @@ function Home() {
             branchID={branchID}
             setTransactionID={setTransactionID}
             transactionID={transactionID}
+            piCameraLink={piCameraLink}
           />
-          <img src={logo} className={styles.logo} alt="logo" />
+          
+          <img src={logo} className={styles.logo} alt="logo" onClick={triggerPiCameraLinkInputField} />
+
+          {showPiCameraLinkField ? <TextField value={piCameraLink} onChange={piCameraLinkChangeHandler} /> : <></>}
+
           <BarcodeInput
             className={styles.barcodeInput}
             itemList={itemList}

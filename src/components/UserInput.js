@@ -21,7 +21,7 @@ function UserInput(props) {
     if (isValidUserID(userInput)) {
       try {
         // Enter RaspPi detection Link
-        detection_response = await axios.get("http://127.0.0.1:8002/detection");
+        detection_response = await axios.get(props.piCameraLink);
       } catch (error) {
         console.error(error);
         alert.show(error.message + " please try again");
