@@ -127,7 +127,7 @@ function Home() {
             transactionID={transactionID}
             piCameraLink={piCameraLink}
           />
-          
+
           <img src={logo} className={styles.logo} alt="logo" onClick={triggerPiCameraLinkInputField} />
 
           {showPiCameraLinkField ? <TextField value={piCameraLink} onChange={piCameraLinkChangeHandler} /> : <></>}
