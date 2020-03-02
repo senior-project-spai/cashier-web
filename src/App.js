@@ -52,7 +52,7 @@ function Home() {
   const [branchID, setBranchID] = useState(0);
   const [transactionID, setTransactionID] = useState(-1);
   const [showPiCameraLinkField, setShowPiCameraLinkField] = useState(false);
-  const [piCameraLink, setPiCameraLink] = useState("http://127.0.0.1:8002/detection");
+  const [piCameraLink, setPiCameraLink] = useState("http://10.2.13.141:8080/detection");
   const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/";
   const alert = useAlert();
   const finishButtonHandler = async () => {
