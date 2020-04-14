@@ -33,6 +33,6 @@ spec:
         app: cashier-web
     spec:
       containers:
-      - image: supakornbabe/spai-cashier-web
+      - image: supakornbabe/spai-cashier-web:dev-6d4287b
         name: spai-cashier-web
         resources: {}
