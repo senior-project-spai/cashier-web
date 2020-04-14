@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY package.json /usr/src/app/package.json
 RUN yarn install --silent
-RUN yarn install react-scripts -g --silent
+RUN yarn global add react-scripts --silent
 COPY . /usr/src/app
 RUN yarn run build
 
