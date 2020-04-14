@@ -1,0 +1,38 @@
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "cashier-web-service"
+  labels:
+    app: "cashier-web"
+spec:
+  ports:
+  - protocol: "TCP"
+    port: 80
+  selector:
+    app: "cashier-web"
+  type: "LoadBalancer"
+  loadBalancerIP: ""
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cashier-web
+  name: cashier-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cashier-web
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cashier-web
+    spec:
+      containers:
+      - image: supakornbabe/spai-cashier-web
+        name: spai-cashier-web
+        resources: {}
