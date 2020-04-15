@@ -10,8 +10,7 @@ spec:
     port: 80
   selector:
     app: "cashier-web"
-  type: "LoadBalancer"
-  loadBalancerIP: ""
+  type: "NodePort"
 ---
 apiVersion: apps/v1
 kind: Deployment
