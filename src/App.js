@@ -53,7 +53,7 @@ function Home() {
   const [transactionID, setTransactionID] = useState(-1);
   const [showPiCameraLinkField, setShowPiCameraLinkField] = useState(false);
   const [piCameraLink, setPiCameraLink] = useState("http://10.2.13.141:8080/detection");
-  const apiLink = "https://cashier-api-spai.apps.spai.ml/_api/";
+  const apiLink = "http://35.240.154.4/_api/";
   const alert = useAlert();
   const finishButtonHandler = async () => {
     let transaction_response = null;
