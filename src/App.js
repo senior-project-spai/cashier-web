@@ -12,8 +12,8 @@ import axios from "axios";
 
 import SquaredButton from "./components/SquaredButton";
 
-const PI_CAMERA_LINK = process.env.PI_CAMERA_LINK || "http://10.2.13.141:8080/detection";
-const CASHIER_API_LINK = process.env.CASHIER_API_LINK || "https://cashier-api-spai.apps.spai.ml/_api/";
+const PI_CAMERA_LINK = process.env.REACT_APP_PI_CAMERA_LINK || "http://10.2.13.141:8080/detection";
+const CASHIER_API_LINK = process.env.REACT_APP_CASHIER_API_LINK || "https://cashier-api-spai.apps.spai.ml/_api/";
 
 const useStyles = makeStyles({
   headerContainer: {
