@@ -12,6 +12,9 @@ import axios from "axios";
 
 import SquaredButton from "./components/SquaredButton";
 
+const PI_CAMERA_LINK = process.env.PI_CAMERA_LINK || "http://10.2.13.141:8080/detection";
+const CASHIER_API_LINK = process.env.CASHIER_API_LINK || "https://cashier-api-spai.apps.spai.ml";
+
 const useStyles = makeStyles({
   headerContainer: {
     display: "grid",
@@ -52,8 +55,8 @@ function Home() {
   const [branchID, setBranchID] = useState(0);
   const [transactionID, setTransactionID] = useState(-1);
   const [showPiCameraLinkField, setShowPiCameraLinkField] = useState(false);
-  const [piCameraLink, setPiCameraLink] = useState("http://10.2.13.141:8080/detection");
-  const apiLink = "http://35.240.154.4/_api/";
+  const [piCameraLink, setPiCameraLink] = useState(PI_CAMERA_LINK);
+  const apiLink = CASHIER_API_LINK;
   const alert = useAlert();
   const finishButtonHandler = async () => {
     let transaction_response = null;
